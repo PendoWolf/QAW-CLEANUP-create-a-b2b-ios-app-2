@@ -6,13 +6,41 @@
     <title>QAWolf Demo</title>
 
     <script>
-    (function(apiKey){
-        (function(p,e,n,d,o){var v,w,x,y,z;o=p[d]=p[d]||{};o._q=o._q||[];
-        v=['initialize','identify','updateOptions','pageLoad','track', 'trackAgent'];for(w=0,x=v.length;w<x;++w)(function(m){
-        o[m]=o[m]||function(){o._q[m===v[0]?'unshift':'push']([m].concat([].slice.call(arguments,0)));};})(v[w]);
-        y=e.createElement(n);y.async=!0;y.src='https://cdn.pendo-dev.pendo-dev.com/agent/static/'+apiKey+'/pendo.js';
-        z=e.getElementsByTagName(n)[0];z.parentNode.insertBefore(y,z);})(window,document,'script','pendo');
-    })('35fbb3fd-e179-45da-80cc-7f2c196ca469');
+      (function (apiKey) {
+        (function (p, e, n, d, o) {
+          var v, w, x, y, z;
+          o = p[d] = p[d] || {};
+          o._q = o._q || [];
+          v = [
+            "initialize",
+            "identify",
+            "updateOptions",
+            "pageLoad",
+            "track",
+            "trackAgent",
+          ];
+          for (w = 0, x = v.length; w < x; ++w)
+            (function (m) {
+              o[m] =
+                o[m] ||
+                function () {
+                  o._q[m === v[0] ? "unshift" : "push"](
+                    [m].concat([].slice.call(arguments, 0)),
+                  );
+                };
+            })(v[w]);
+          y = e.createElement(n);
+          y.async = !0;
+          y.src =
+            "https://cdn.pendo-dev.pendo-dev.com/agent/static/" +
+            apiKey +
+            "/pendo.js";
+          z = e.getElementsByTagName(n)[0];
+          z.parentNode.insertBefore(y, z);
+        })(window, document, "script", "pendo");
+      })(
+        "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhY2VudGVyIjoidXMiLCJrZXkiOiIzNWJiYWI3NDUxMDIzZGVjN2Y3YzQyM2M3ZjI4YmRlODE3MzIwYWViYWE3OTYwYzNkZmU3NjIwYWZiODY2OTA2NDk4MDhmOTNjZDUxZjkzYzVlMTVhYjg2ZDlhOWIzZTMwM2FmZGY5ODcxNDZiZmRjZWZjZmVhMzFjMzYyYjBmZDUyNTQ1MTY3MjdkYTU2MTMyNDc3Y2EzMjJkNzE2MjEwZDU5ZGRkNzI2OTI4ZWMwYTY0ZjAyNTljNmY2NzA0MzAuMDBlNzk0YWY2ZjlhN2NlMzYzZWFhM2IxMjFmYmQzYmMuODM0Y2RiNzE2NmI2ODQ5ODMyODI3YTUxMmQzMGVkNDYzZGNlZmM5OGJlYTJkOTEyYmY4N2M3MmE1MDZmYWVkMyJ9.JqkzkESi-B0WXjfdkxnBApNA7xQP26UgfwQbv5mniFxVDszB0NG9RKctdk6VpOUIZ8dNImbMgsSLvEQ9qJSdZAWI_asVlDt-rZuY2X3w5eNZUX6joK2nmo-AnNpIdbha1lIbQfQoygBkMDz376VOlnk_6BG6EcJREu-lRbn64pM",
+      );
     </script>
   </head>
   <body>
