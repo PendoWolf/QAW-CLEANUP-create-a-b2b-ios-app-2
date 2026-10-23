@@ -20,7 +20,15 @@ export default function App() {
       setState(await fn());
       trackEvent(name);
     } catch (e) {
-      setError((e as Error).message);
+      const message = (e as Error).message;
+      setError(message);
+      // Pendo Track Event: a counter API call (load, increment, decrement,
+      // reset or refresh) failed and the error message is being shown.
+      window.pendo?.track?.("counter_action_failed", {
+        action: name,
+        errorMessage: message.slice(0, 200),
+        counter: state.counter,
+      });
     }
   };
 
