@@ -20,7 +20,19 @@ export default function App() {
       setState(await fn());
       trackEvent(name);
     } catch (e) {
-      setError((e as Error).message);
+      const errorMessage = (e as Error).message;
+      setError(errorMessage);
+      // Track Event: an API call for load/increment/decrement/reset/refresh failed
+      // (non-OK status or network error). Measures failure rate per action.
+      try {
+        window.pendo?.track?.("counter_action_failed", {
+          action: name,
+          errorMessage: errorMessage?.substring(0, 200),
+          counter: state.counter,
+        });
+      } catch {
+        // Never let analytics break the app.
+      }
     }
   };
 
