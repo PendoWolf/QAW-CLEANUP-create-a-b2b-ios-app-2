@@ -20,7 +20,13 @@ export default function App() {
       setState(await fn());
       trackEvent(name);
     } catch (e) {
-      setError((e as Error).message);
+      const message = (e as Error).message;
+      setError(message);
+      // Track Event: a counter API call failed and the error message is shown.
+      window.pendo?.track?.("Counter request failed", {
+        action: name,
+        error_message: message.slice(0, 100),
+      });
     }
   };
 

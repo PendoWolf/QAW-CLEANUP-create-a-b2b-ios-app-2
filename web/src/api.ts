@@ -7,8 +7,19 @@ export interface AppState {
   lastAction: string;
 }
 
+// Pass the Pendo visitor/account IDs (set in main.tsx) so server-side Track
+// Events attribute to the same visitor and account.
+function identityHeaders(): Record<string, string> {
+  const headers: Record<string, string> = {};
+  const visitorId = localStorage.getItem("demo-visitor-id");
+  const accountId = localStorage.getItem("demo-account-id");
+  if (visitorId) headers["x-visitor-id"] = visitorId;
+  if (accountId) headers["x-account-id"] = accountId;
+  return headers;
+}
+
 async function call(path: string, method: "GET" | "POST"): Promise<AppState> {
-  const res = await fetch(`${BASE}${path}`, { method });
+  const res = await fetch(`${BASE}${path}`, { method, headers: identityHeaders() });
   if (!res.ok) throw new Error(`${method} ${path} failed: ${res.status}`);
   return res.json() as Promise<AppState>;
 }
