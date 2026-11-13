@@ -37,6 +37,8 @@ Every interactive and display element has a stable `data-testid`:
 | `VITE_API_URL` | web build | API base URL (defaults to `http://localhost:3001`) |
 | `PORT` | server | API port (default 3001) |
 | `CORS_ORIGIN` | server | Comma-separated allowed origins (default: all) |
+| `PENDO_TRACK_EVENT_SECRET` | server | Pendo Track Event integration key; server-side Track Events are skipped when unset |
+| `PENDO_DATA_HOST` | server | Pendo data host for server-side Track Events (default `data.pendo-dev.pendo-dev.com`) |
 | `BASE_URL` | tests | URL under test; set to a deployed/preview URL for QAWolf |
 | `PENDO_LIVE` | tests | `1` enables the live-agent network test |
 
