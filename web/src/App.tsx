@@ -20,7 +20,18 @@ export default function App() {
       setState(await fn());
       trackEvent(name);
     } catch (e) {
-      setError((e as Error).message);
+      const message = (e as Error).message;
+      setError(message);
+      // Track Event: a counter action or the initial state load failed.
+      // The demo-* events only fire on success, so this records the failure
+      // and which action it was. No-op when the Pendo agent isn't present.
+      if (typeof window !== "undefined") {
+        window.pendo?.track?.("counter_action_failed", {
+          action: name,
+          errorMessage: message.slice(0, 200),
+          counter: state.counter,
+        });
+      }
     }
   };
 
